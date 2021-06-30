@@ -71,9 +71,22 @@ Just pip install all requirements.
 
 Feel free to add tools, or simply feedback or ideas.
 
-## License
+## Licenses
 
-MIT
+GPLv3
+
+requests : Apache Software License 
+
+terminaltables : MIT
+
+termgraph : MIT
+
+termcolor : MIT
+
+geopy : MIT
+
+psutil : BSD
+
 
 https://openweathermap.org : Creative Commons Attribution-ShareAlike 4.0 International license (CC BY-SA 4.0)
 
