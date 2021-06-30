@@ -1,1 +1,1 @@
-{"settings": [{"cryptoCurrency": "ETH", "fiatCurrency": "EUR", "days": "0", "hours": "0", "minutes": "30"}]}
+{"settings": [{"cryptoCurrency": ["BTC", "ETH"], "fiatCurrency": "USD", "modules": ["weather", "system", "crypto"], "weatherHours": 5, "timer": 5.0, "location": "Brussels", "latitude": 38.9494939, "longitude": -90.5887314}]}

@@ -27,58 +27,56 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-fiat', '-f',
                         help='update default fiat currency')
-    parser.add_argument('-crypto', '-c',
-                        help='update default crypto currency')
-    parser.add_argument('-time', '-t',nargs='+', type = float,
-                        help='update default time : dd hh mm')
-    parser.add_argument('-history', nargs='?',
-                        help='use time for historical prices')
-    parser.add_argument('-timer','-ut', nargs='?',type = int,
-                        help='price update timer in seconds')
+    parser.add_argument('-crypto', '-c', nargs='*',
+                        help='updates crypto currency list  ')
+    parser.add_argument('-rcrypto', '-rc', nargs='*',
+                        help='remvoes crypto currencies from list  ')
+    parser.add_argument('-timer', '-t', type = float,
+                        help='update timer in seconds')
+    parser.add_argument('-location','-l', nargs='?',
+                        help='update weather location')
+    parser.add_argument('-modules','-m', nargs='*',
+                        help='adds modules to interface')
+    parser.add_argument('-rmodules', '-rm', nargs='*',
+                        help='removes modules from interface ')
+    parser.add_argument('-weatherhours', '-w', nargs='?', type = int,
+                        help='number of hours for weather prediction ')
 
     args = parser.parse_args()
 
-    if args.time != None and len(args.time) > 3:
-        print("-time takes maximum 3 aruments ")
-        exit()
 
-    if args.fiat != None or args.crypto != None or args.fiat != None:
-        settings.updateSettings(args.crypto, args.fiat, args.time)
 
-    CRYPTO,FIAT,DAY,HOUR,MINUTE = settings.setSettings()
+    settings.updateSettings(args.crypto , args.rcrypto , args.fiat , args.modules , args.rmodules , args.location , args.weatherhours , args.timer)
 
-    url = cryptoTicker.createURL(args.history)
 
-    response = requests.get(url)
-    pricedata = response.json()
 
-    timer = 5
-    if args.timer != None :
-        timer = args.timer
+
     val = 0
     os.system('clear')
+    x = 0
 
+    for i in settings.MODULES:
+        if i == "weather":
+            #TODO make customisable update system instead of 600 for 10 minutes
+            weatherThread = threading.Thread(target=weather.weatherModule,
+                                    args=(LOCK, 600, x, 20, settings.WEATHER_HOURS))
+            weatherThread.start()
+            x+=12
+            time.sleep(0.2)
+        if i == "system":
+            load = threading.Thread(target=sysMonitor.printPCusage, args=(LOCK, settings.TIMER, 0, x,))
+            load.start()
+            x+=8
 
-    cryptoThread = threading.Thread( target= cryptoTicker.printInterface , args = (LOCK, url , timer ,0,0))
-    cryptoThread.start()
+            time.sleep(0.2)
 
-    time.sleep(0.1)
+        if i == "crypto" :
+            cryptoThread = threading.Thread(target=cryptoTicker.printInterface,
+                                            args=(LOCK, settings.CRYPTO, settings.TIMER, x, 0))
+            cryptoThread.start()
+            x+=10
 
-    load = threading.Thread(target=sysMonitor.printPCusage, args=(LOCK , timer,0,10,))
-    load.start()
-
-    time.sleep(0.1)
-
-    load = threading.Thread(target=weather.weatherModule, args=(LOCK , timer,20,20,settings.WEATHER_HOURS))
-    load.start()
-
-    #TODO : instead of main loop , make each function a thread with a loop inside it
-    """
-     N = 12
-    for i in range(N):
-         time.sleep(0.5)
-         print(f"{i / N * 100:.1f} %", end="\r")
-     """
+            time.sleep(0.2)
 
 
 

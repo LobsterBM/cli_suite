@@ -24,6 +24,7 @@ def printPCusage(LOCK,timer , x, y):
         sys.stdout.write('\x1b[2K')
 
 
+
         print("CPU : " + str(round(psutil.cpu_freq()[0])) + " MHz "  )
 
         cpu , ram = pcLoad()
