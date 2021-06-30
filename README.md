@@ -60,7 +60,7 @@ Show graph with RAM and CPU  usage
  -rmodules , -m : modules to remove from interface
  ```
  ```sh
- -weatherhours -w :``` number of hours for weather forecasting
+ -weatherhours -w : number of hours for weather forecasting
 ```
 
 ## Installation
