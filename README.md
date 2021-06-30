@@ -75,5 +75,8 @@ Feel free to add tools, or simply feedback or ideas.
 
 MIT
 
-Check with the external tools I used for their respective licenses.
+https://openweathermap.org : Creative Commons Attribution-ShareAlike 4.0 International license (CC BY-SA 4.0)
+
+Coingecko license & ToS : https://www.coingecko.com/en/api_terms
+
 
