@@ -13,6 +13,7 @@ Personal command line interface suite for with useful information, modular with 
 * geopy==2.1.0
 * psutil==5.8.0
 
+*Note: not yet tested on Mac or Windows
 
 
 
