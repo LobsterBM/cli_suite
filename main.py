@@ -59,9 +59,10 @@ if __name__ == '__main__':
         if i == "weather":
             #TODO make customisable update system instead of 600 for 10 minutes
             weatherThread = threading.Thread(target=weather.weatherModule,
-                                    args=(LOCK, 600, x, 20, settings.WEATHER_HOURS))
+                                    args=(LOCK, 600, x, 20, int(settings.WEATHER_HOURS)))
             weatherThread.start()
-            x+=12
+            x+= int(settings.WEATHER_HOURS)
+            x+=8
             time.sleep(0.2)
         if i == "system":
             load = threading.Thread(target=sysMonitor.printPCusage, args=(LOCK, settings.TIMER, 0, x,))

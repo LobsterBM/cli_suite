@@ -103,7 +103,7 @@ def updateSettings(addCrypto , removeCrypto , defaultCurrency , addModules , rem
 
     if weatherHours != None :
         WEATHER_HOURS = weatherHours
-        data['settings'][0]['weatherHours'] = LOCATION
+        data['settings'][0]['weatherHours'] = WEATHER_HOURS
     if timer != None:
         TIMER = timer
         data['settings'][0]['timer'] = TIMER

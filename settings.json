@@ -1,1 +1,1 @@
-{"settings": [{"cryptoCurrency": ["BTC", "ETH", "XRP"], "fiatCurrency": "EUR", "modules": ["weather", "system", "crypto"], "weatherHours": 5, "timer": 5.0, "location": "Louvain-la-Neuve", "latitude": 50.6741689, "longitude": 4.613790587187648}]}
+{"settings": [{"cryptoCurrency": ["BTC", "ETH", "XRP"], "fiatCurrency": "EUR", "modules": ["weather", "system", "crypto"], "weatherHours": 5, "timer": 5.0, "location": "Louvain-le-Neuve", "latitude": 50.6741689, "longitude": 4.613790587187648}]}
