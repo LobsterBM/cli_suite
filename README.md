@@ -37,7 +37,7 @@ Show graph with RAM and CPU  usage
 ## Usage
   
 ```sh
-    -fiat , -f : updates fiat currency for cryptocurrency comparison
+ -fiat , -f : updates fiat currency for cryptocurrency comparison
 ```
  ```sh
  -crypto , -c : adds cryptocurrency to the list , you can add multiple coins separated by a space
