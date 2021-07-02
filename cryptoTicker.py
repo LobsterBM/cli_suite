@@ -64,6 +64,8 @@ def cryptoPrint(coins):
     completeTable.append(dayMins)
 
     table_instance = terminaltables.SingleTable(completeTable, "Crypto-ticker : ")
+    table_instance.justify_columns[1] = 'center'
+    table_instance.justify_columns[2] = 'center'
     table_instance.justify_columns[3] = 'center'
 
     print(table_instance.table)
@@ -81,12 +83,14 @@ def printInterface(LOCK , crypto ,timer ,y,x ):
         if i['symbol'].upper() in crypto:
             cryptoList.append(Coin(i['id'], i["symbol"], i["current_price"], 0, i["high_24h"], i["low_24h"],i["price_change_percentage_24h"]))
 
+
     while True :
+
 
         for i in cryptoData:
             if i['symbol'].upper() in crypto:
                 for j in cryptoList:
-                    if i['symbol'].upper() == j.symbol:
+                    if i['symbol'].upper() == j.symbol.upper():
                         j.updatePrice(i["current_price"],i['price_change_percentage_24h'])
         LOCK.acquire()
         move(y,x)
@@ -94,5 +98,7 @@ def printInterface(LOCK , crypto ,timer ,y,x ):
         LOCK.release()
 
         time.sleep(timer)
+        cryptoData = None
         cryptoData = requests.get(url + currency).json()
+
 
